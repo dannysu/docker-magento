@@ -1,0 +1,14 @@
+version: '2'
+services:
+  magento:
+    image: dannysu/magento:1.9
+    ports:
+      - "80:80"
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: magento

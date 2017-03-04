@@ -1,0 +1,15 @@
+#!/bin/sh
+
+REPO="dannysu/magento"
+
+TAGS=""
+TAGS="$TAGS -t=${REPO}:1.9"
+TAGS="$TAGS -t=${REPO}:1.9.3"
+TAGS="$TAGS -t=${REPO}:1.9.3.2"
+
+export MAGENTO_TAR_GZ="magento-1.9.3.2-2017-02-07-01-55-11.tar.gz"
+if [ ! -e $MAGENTO_TAR_GZ ]; then
+    echo "$MAGENTO_TAR_GZ doesn't exist. Please download the file from Magento website."
+    exit 1
+fi
+docker build --pull --force-rm --build-arg MAGENTO_TAR_GZ="$MAGENTO_TAR_GZ" $TAGS .
